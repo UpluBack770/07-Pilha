@@ -8,6 +8,7 @@ struct NO {
 };
 
 NO* topo = NULL;
+NO* anterior = NULL;
 
 // headers
 void menu();
@@ -58,7 +59,7 @@ void menu()
 
 void inicializar()
 {
-
+	
 	// se a lista já possuir elementos
 	// libera a memoria ocupada
 	NO* aux = topo;
@@ -87,12 +88,27 @@ void push()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	novo->prox = topo;
+	topo = novo;
+
 
 }
 
 void pop()
 {
 
+	if (topo == NULL)
+	{
+		cout << "Pilha Vazia" << endl;
+		return;
+	}
+	
+	NO* aux = topo;
+
+	cout << "Elemento " << aux->valor << " sera deletado" << endl;
+	
+	topo = topo->prox;
+	free(aux);
 	
 
 }
